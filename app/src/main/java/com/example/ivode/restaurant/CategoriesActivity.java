@@ -10,6 +10,7 @@ import android.widget.Toast;
 import android.content.Intent;
 import java.util.ArrayList;
 
+/** Show the available categories and send the user to a list of available dishes in that category. */
 public class CategoriesActivity extends AppCompatActivity implements CategoriesRequest.Callback {
 
     private String categories[] = {"appetizers", "entrees"};
@@ -19,12 +20,26 @@ public class CategoriesActivity extends AppCompatActivity implements CategoriesR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
-        // set listener
-        ListView listView = findViewById(R.id.category_list);
-        listView.setOnItemClickListener(new OnItemClickListener());
+        ListView menu_list = findViewById(R.id.category_list);
+        menu_list.setOnItemClickListener(new OnItemClickListener());
 
-        CategoriesRequest x = new CategoriesRequest(this);
-        x.getCategories(this);
+        CategoriesRequest category_request = new CategoriesRequest(this);
+        category_request.getCategories(this);
+    }
+
+    // make array adapter for categories
+    @Override
+    public void gotCategories(ArrayList<String> categories) {
+        ArrayAdapter<String> category_adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1,
+                categories);
+        ListView menu_list = findViewById(R.id.category_list);
+        menu_list.setAdapter(category_adapter);
+    }
+
+    @Override
+    public void gotCategoriesError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     private class OnItemClickListener implements AdapterView.OnItemClickListener {
@@ -34,22 +49,5 @@ public class CategoriesActivity extends AppCompatActivity implements CategoriesR
             intent.putExtra("category_name", categories[position]);
             startActivity(intent);
         }
-    }
-
-    @Override
-    public void gotCategories(ArrayList<String> categories) {
-        Toast.makeText(this, categories.get(0), Toast.LENGTH_LONG).show();
-
-        // create simple array adapter
-        ArrayAdapter<String> categoriesAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,
-                categories);
-        ListView listView = findViewById(R.id.category_list);
-        listView.setAdapter(categoriesAdapter);
-    }
-
-    @Override
-    public void gotCategoriesError(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }

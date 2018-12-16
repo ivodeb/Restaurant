@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="8dp"
     android:orientation="vertical"
     tools:context=".MenuItemActivity">
 
@@ -11,23 +12,33 @@
         android:id="@+id/item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:fontFamily="@font/journal"
+        android:padding="16dp"
+        android:text="TextView"
+        android:textSize="48sp" />
 
     <ImageView
         android:id="@+id/item_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         app:srcCompat="@drawable/ic_launcher_background" />
-
-    <TextView
-        android:id="@+id/item_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
 
     <TextView
         android:id="@+id/item_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:fontFamily="@font/journal"
+        android:padding="16dp"
+        android:text="TextView"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/item_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/journal"
+        android:padding="16dp"
+        android:text="TextView"
+        android:textSize="28sp" />
 </LinearLayout>

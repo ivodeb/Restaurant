@@ -14,38 +14,19 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/** Request categories from API. */
 public class CategoriesRequest implements Response.Listener<JSONObject>, Response.ErrorListener {
 
     private Context context;
-    ArrayList<String> categories = new ArrayList<>();
+    private ArrayList<String> categories = new ArrayList<>();
     Callback activity;
 
     public interface Callback {
         void gotCategories(ArrayList<String> categories);
         void gotCategoriesError(String message);
     }
-    public CategoriesRequest(Context c) {
+    CategoriesRequest(Context c) {
         this.context = c;
-    }
-
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        activity.gotCategoriesError(error.getMessage());
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-        try {
-            JSONArray categoriesArray = response.getJSONArray("categories");
-
-            for (int i = 0; i < categoriesArray.length(); i++) {
-                categories.add(categoriesArray.getString(i));
-            }
-        }
-        catch(JSONException error) {
-            Log.e("requestError", error.getMessage());
-        }
-        activity.gotCategories(categories);
     }
 
     void getCategories(Callback act) {
@@ -59,7 +40,27 @@ public class CategoriesRequest implements Response.Listener<JSONObject>, Respons
             queue.add(jsonObjectRequest);
         }
         catch(Exception error) {
-            Log.e("requestError", error.getMessage());
+            Log.e("req_error", error.getMessage());
         }
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        try {
+            JSONArray categoriesArray = response.getJSONArray("categories");
+
+            for (int i = 0; i < categoriesArray.length(); i++) {
+                categories.add(categoriesArray.getString(i));
+            }
+        }
+        catch(JSONException error) {
+            Log.e("req_error", error.getMessage());
+        }
+        activity.gotCategories(categories);
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        activity.gotCategoriesError(error.getMessage());
     }
 }
