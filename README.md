@@ -1,7 +1,7 @@
 # Restaurant by Ivo de Brouwer 11045841
 
 Extra features:
-- There wasn't a lot I could think of to improve the app, so I spent a lot of time getting the lay-out as perfect as possible.
+- There wasn't a lot I could think of to improve the app, so I spent a lot of time getting the lay-out as clean as I could.
 
 ## Screenshots
 
