@@ -25,12 +25,12 @@ public class CategoriesRequest implements Response.Listener<JSONObject>, Respons
         void gotCategories(ArrayList<String> categories);
         void gotCategoriesError(String message);
     }
-    CategoriesRequest(Context c) {
-        this.context = c;
+    CategoriesRequest(Context context) {
+        this.context = context;
     }
 
-    void getCategories(Callback act) {
-        this.activity = act;
+    void getCategories(Callback activity) {
+        this.activity = activity;
 
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "https://resto.mprog.nl/categories";
@@ -47,10 +47,10 @@ public class CategoriesRequest implements Response.Listener<JSONObject>, Respons
     @Override
     public void onResponse(JSONObject response) {
         try {
-            JSONArray categoriesArray = response.getJSONArray("categories");
+            JSONArray categories_array = response.getJSONArray("categories");
 
-            for (int i = 0; i < categoriesArray.length(); i++) {
-                categories.add(categoriesArray.getString(i));
+            for (int i = 0; i < categories_array.length(); i++) {
+                categories.add(categories_array.getString(i));
             }
         }
         catch(JSONException error) {
