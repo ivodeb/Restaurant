@@ -30,9 +30,7 @@ public class CategoriesActivity extends AppCompatActivity implements CategoriesR
     // make array adapter for categories
     @Override
     public void gotCategories(ArrayList<String> categories) {
-        ArrayAdapter<String> category_adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1,
-                categories);
+        ArrayAdapter<String> category_adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, categories);
         ListView menu_list = findViewById(R.id.category_list);
         menu_list.setAdapter(category_adapter);
     }
