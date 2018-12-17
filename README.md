@@ -5,7 +5,7 @@ Extra features:
 
 ## Screenshots
 
-Categories                | Dishes                | Dish details        
-:------------------------:|:---------------------:|:----------------------------:|
-![1](Restaurant1.jpg)     | ![2](Restaurant2.jpg) | ![3](Restaurant3.jpg)        |
+Categories                    | Dishes                    | Dish details        
+:----------------------------:|:-------------------------:|:----------------------------:|
+![1](doc/Restaurant1.jpg)     | ![2](doc/Restaurant2.jpg) | ![3](doc/Restaurant3.jpg)
 
